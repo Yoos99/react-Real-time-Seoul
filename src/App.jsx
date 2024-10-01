@@ -19,9 +19,10 @@ const App = () => {
       try {
         setLoading(true);
         const response = await ky.get(dataUrl).json();
-        //console.log(response.row);
+
         setAreaData(response.row); // 데이터의 row 부분을 areaData로 설정
-        console.log(response.row.map((item) => item.area_nm)[0]);
+        // console.log(response.row);
+        //console.log(response.row.map((item) => item.area_nm)[0]);
       } catch (error) {
         console.error('지역 데이터를 가져오는 중 오류가 발생했습니다:', error);
         setError('지역 데이터를 가져오는 중 오류가 발생했습니다.');
@@ -60,7 +61,7 @@ const App = () => {
 
   return (
     <div>
-      <KakaoMap />
+      <KakaoMap areaData={areaData} />
       <h1>서울시 행사 정보 조회</h1>
 
       {/* 지역 데이터를 불러오는 동안 로딩 메시지 표시 */}
