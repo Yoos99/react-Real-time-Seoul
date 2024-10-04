@@ -1,54 +1,60 @@
 .card {
   position: absolute;
-  top: 100px;
+  bottom: 50px; /* 마커 위에 위치하도록 조정 */
   left: 50%;
   transform: translateX(-50%);
-  width: 300px;
+  width: 200px;
   background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-  z-index: 999;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  background-color: #f5f5f5;
-}
-
-.name {
-  color: green;
-}
-
-.closeButton {
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: visible; /* 삼각형이 보이도록 설정 */
+  z-index: 999; /* 지도 위에 표시되도록 설정 */
 }
 
 .imageWrapper {
   width: 100%;
-  height: 200px;
+  height: 150px;
+  overflow: hidden; /* 이미지를 카드 크기에 맞게 자름 */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* 이미지 크기에 맞게 조정 */
+}
+
+.content {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 12px;
 }
 
 /* 마커와 카드 사이의 삼각형 모양 */
 .triangle {
   position: absolute;
-  bottom: -15px; // 카드 바로 아래에 배치
+  bottom: -10px; /* 카드 아래에 위치 */
   left: 50%;
   transform: translateX(-50%);
-
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-top: 15px solid black; // 삼각형의 색상은 카드의 배경과 동일하게 설정
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid white; /* 삼각형의 색상을 카드 배경색과 동일하게 설정 */
 }
