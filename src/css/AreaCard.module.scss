@@ -1,9 +1,9 @@
 .card {
   position: absolute;
-  bottom: 50px; /* 마커 위에 위치하도록 조정 */
+  bottom: 50%; /* 마커 위에 위치하도록 조정 */
   left: 50%;
   transform: translateX(-50%);
-  width: 200px;
+  width: 300px;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 10px;

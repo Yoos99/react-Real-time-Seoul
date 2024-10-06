@@ -1,0 +1,96 @@
+.header {
+  position: fixed; /* 상단에 고정 */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e9ecef;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+
+  .logo {
+    width: 50px; // 로고 이미지의 너비 조절
+    height: auto;
+    margin-right: 10px;
+  }
+
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+
+    .highlight {
+      color: #1e90ff; // "SEOUL" 부분을 강조할 색상
+    }
+  }
+}
+
+.searchSection {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px;
+
+  .searchBox {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #e6f7ff; // 부드러운 대비를 위한 배경색
+  }
+
+  .searchButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    margin-left: 10px;
+    cursor: pointer;
+    padding: 0 15px;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+
+  .myButton {
+    display: flex;
+    align-items: center;
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #ff6b81;
+    }
+
+    .heartIcon {
+      margin-right: 5px;
+      font-size: 18px;
+    }
+  }
+}

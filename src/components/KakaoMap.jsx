@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import AreaCard from './AreaCard';
+import styles from './KakaoMap.module.scss';
 
-function KakaoMap({ areaData }) {
+function KakaoMap({ areaData }, { eventData }) {
   const [selectedArea, setSelectedArea] = useState(null); // 선택된 지역 정보 저장
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div className={styles.mapContainer}>
       <Map
         center={{ lat: 37.55659428234287, lng: 126.97302795181167 }}
-        style={{ width: '1500px', height: '1000px' }}
-        level={7}
+        className={styles.kakaoMap}
+        level={6}
         onClick={() => setSelectedArea(null)} // 맵을 클릭하면 카드 닫기
       >
         {/* 모든 지역 데이터를 이용해 마커를 생성 */}
@@ -20,6 +21,10 @@ function KakaoMap({ areaData }) {
             <MapMarker
               key={index}
               position={{ lat: parseFloat(area.x), lng: parseFloat(area.y) }}
+              image={{
+                src: 'src/img/placeMappin.svg',
+                size: { width: 40, height: 40 },
+              }}
               clickable={true}
               onClick={() => setSelectedArea(area)} // 마커 클릭 시 지역 정보 설정
             />
