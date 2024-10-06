@@ -60,49 +60,86 @@ function MainPage() {
             <div>데이터를 불러오는 중입니다...</div>
           )}
           {sortedAreaData.length > 0 && (
-            <div className={styles.cardList}>
-              {sortedAreaData.map((area, index) => {
-                const hotPlace = hotPlaceData[area.area_nm];
-                const description = generateDescription(
-                  hotPlace,
-                  hotPlaceLoading
+            <>
+              {Object.keys(highestPopulationByAgeGroup).map((ageGroup) => {
+                const placeName =
+                  highestPopulationByAgeGroup[ageGroup].place_name;
+                const area = areaData.find(
+                  (item) => item.area_nm === placeName
                 );
 
-                return (
-                  <div
-                    key={index}
-                    className={styles.card}
-                    onClick={() => setSelectedName(area.area_nm)}
-                  >
-                    <div className={styles.cardImage}>
-                      <img
-                        src={`https://data.seoul.go.kr/SeoulRtd/images/hotspot/${area.area_nm}.jpg`}
-                        alt={area.area_nm}
-                        className={styles.image}
-                      />
+                if (area) {
+                  const hotPlace = hotPlaceData[area.area_nm];
+                  const description = generateDescription(
+                    hotPlace,
+                    hotPlaceLoading
+                  );
+
+                  return (
+                    <div key={ageGroup} className={styles.ageGroupSection}>
+                      <h2 className={styles.ageGroupTitle}>
+                        {ageGroup}가 가장 많이 방문했어요!
+                      </h2>
+                      <div
+                        className={styles.card}
+                        onClick={() => setSelectedName(area.area_nm)}
+                      >
+                        <div className={styles.cardImage}>
+                          <img
+                            src={`https://data.seoul.go.kr/SeoulRtd/images/hotspot/${area.area_nm}.jpg`}
+                            alt={area.area_nm}
+                            className={styles.image}
+                          />
+                        </div>
+                        <div className={styles.cardContent}>
+                          <h2>{area.area_nm}</h2>
+                          <p>{description}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className={styles.cardContent}>
-                      <h2>{area.area_nm}</h2>
-                      <p>{description}</p>
-                    </div>
-                  </div>
-                );
+                  );
+                }
+                return null;
               })}
-            </div>
+              <h2 className={styles.otherPlacesTitle}>다른 서울 핫플들</h2>
+              <div className={styles.cardList}>
+                {sortedAreaData
+                  .filter(
+                    (area) =>
+                      !Object.values(highestPopulationByAgeGroup)
+                        .map((item) => item.place_name)
+                        .includes(area.area_nm)
+                  )
+                  .map((area, index) => {
+                    const hotPlace = hotPlaceData[area.area_nm];
+                    const description = generateDescription(
+                      hotPlace,
+                      hotPlaceLoading
+                    );
+
+                    return (
+                      <div
+                        key={index}
+                        className={styles.card}
+                        onClick={() => setSelectedName(area.area_nm)}
+                      >
+                        <div className={styles.cardImage}>
+                          <img
+                            src={`https://data.seoul.go.kr/SeoulRtd/images/hotspot/${area.area_nm}.jpg`}
+                            alt={area.area_nm}
+                            className={styles.image}
+                          />
+                        </div>
+                        <div className={styles.cardContent}>
+                          <h2>{area.area_nm}</h2>
+                          <p>{description}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            </>
           )}
-          {/* 나이대별 가장 인기 있는 장소 표시 */}
-          <div className={styles.highestPopulationContainer}>
-            <h2>나이대별 가장 인기 있는 장소</h2>
-            <ul>
-              {Object.keys(highestPopulationByAgeGroup).map((ageGroup) => (
-                <li key={ageGroup}>
-                  <strong>{ageGroup}</strong>:{' '}
-                  {highestPopulationByAgeGroup[ageGroup].place_name} (
-                  {highestPopulationByAgeGroup[ageGroup].population_ratio}%)
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
         <div className={styles.mapContainer}>
           <KakaoMap areaData={areaData} eventData={festivalData} />
