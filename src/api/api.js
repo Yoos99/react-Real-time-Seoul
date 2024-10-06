@@ -29,3 +29,17 @@ export const fetchFestivalData = async (name) => {
     throw new Error('문화행사 데이터를 가져오는 중 오류가 발생했습니다.');
   }
 };
+
+// 새로운 fetchHotPlace 함수 추가
+export const fetchHotPlace = async (name) => {
+  if (!name) return;
+
+  const ppltnURL = `http://openapi.seoul.go.kr:8088/${apiKey}/json/citydata_ppltn/1/5/${name}`;
+  try {
+    const response = await ky.get(ppltnURL).json();
+    return response['SeoulRtd.citydata_ppltn'][0]; // 인구 밀도 정보 반환
+  } catch (error) {
+    console.error('인구 밀도 데이터를 가져오는 중 오류가 발생했습니다:', error);
+    throw new Error('인구 밀도 데이터를 가져오는 중 오류가 발생했습니다.');
+  }
+};

@@ -3,7 +3,7 @@ import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import AreaCard from './AreaCard';
 import styles from './KakaoMap.module.scss';
 
-function KakaoMap({ areaData }, { eventData }) {
+function KakaoMap({ areaData }) {
   const [selectedArea, setSelectedArea] = useState(null); // 선택된 지역 정보 저장
 
   return (
