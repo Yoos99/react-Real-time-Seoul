@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+// color
+$primary-color: #0087ca; // 주색 파랑
+$primary-color-transparent: rgba(0, 135, 202, 0.5); // 50% 투명도
+$secondary-color: #bc1238; // 부색 빨강
+$teenagers-color: #ffafa3; // 10대
+$twenties-color: #ffc470; // 20대
+$thirties-color: #ffd966; // 30대
+$forties-color: #85e0a3; // 40대
+$fifties-color: #80caff; // 50대
+$sixties-color: #d9b8ff; // 60대
+$very-crowded-color: #dd1f3d; // 매우 혼잡
+$crowded-color: #ff8040; // 혼잡
+$normal-color: #ffb100; // 보통
+$quiet-color: #00d369; // 한적
+$gray-color: #bdbdbd; // 회색
+$black-color: #333333; // 검은색
+$white-color: #ffffff;
+
+// shadow
+$box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); // 그림자 설정
+
+// radius
+$border-radius-default: 20px; // 기본
+$border-radius-thin: 10px; // 얇음
+$border-radius-circle: 50%; // 원
+
+// padding, margin, gap
+$padding-default: 1rem; // 기본
+$padding-thin: 0.5rem; // 얇음
+$padding-thick: 1.5rem; // 두꺼움
+$padding-thicker: 2rem; // 아주 두꺼움
+
+// font-size
+$font-size-max-extra-large: 36px;
+$font-size-extra-large: 28px;
+$font-size-large: 26px;
+$font-size-medium: 16px;
+$font-size-small: 14px;
+$font-size-micro: 12px;
+
+// font-weight
+$font-weight-bold: 900;
+$font-weight-regular: 400;
+$font-weight-thin: 300;
+
+// font-family
+$font-family-h2: 'Nanum Gothic', sans-serif;
+$font-family-h3: 'Do Hyeon', sans-serif;
+$font-family-p: 'Noto Sans KR', sans-serif;
+$font-family-span: 'Noto Sans KR', sans-serif;
+
+h2 {
+  font-family: $font-family-h2;
+  font-size: $font-size-extra-large;
+  font-weight: $font-weight-bold;
+}
+
+h3 {
+  font-family: $font-family-h3;
+  font-size: $font-size-large;
+  font-weight: $font-weight-regular;
+}
+
+p {
+  font-family: $font-family-p;
+  font-size: $font-size-medium;
+  font-weight: $font-weight-thin;
+}
+
+span {
+  font-family: $font-family-span;
+  font-size: $font-size-micro;
+  font-weight: $font-weight-thin;
+}
+
+strong {
+  color: $primary-color;
+  font-weight: $font-weight-bold;
+}

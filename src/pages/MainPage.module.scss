@@ -1,0 +1,83 @@
+.mainContainer {
+  display: flex;
+  width: 100%;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin-top: 130px;
+}
+
+.listContainer {
+  flex: 1;
+  padding: 20px;
+  background-color: #f8f9fa;
+  overflow-y: auto;
+
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007dfa;
+    margin-bottom: 20px;
+  }
+}
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .cardImage {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .cardContent {
+    padding: 10px 20px;
+    flex-grow: 1;
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #333;
+    }
+
+    p {
+      margin: 5px 0 0;
+      color: #6c757d;
+      font-size: 14px;
+    }
+  }
+}
+
+.mapContainer {
+  flex: 2;
+  padding: 20px;
+  height: 100%;
+}
+
+.kakaoMap {
+  width: 100%;
+  height: 100%;
+}
