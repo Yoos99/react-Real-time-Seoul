@@ -1,58 +1,34 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import KakaoMap from '../components/KakaoMap';
 import Header from '../components/Header';
-import useFetchAreaData from '../hooks/useFetchAreaData'; // 커스텀 훅 가져오기
-import useFetchFestivalData from '../hooks/useFetchFestivalData'; // 커스텀 훅 가져오기
-import useFetchHotPlaceData from '../hooks/useFetchHotPlaceData'; // 커스텀 훅 가져오기
-import {
-  generateDescription,
-  findHighestPopulationByAgeGroup,
-} from '../utils/populationCalculate'; // 공통 파일 가져오기
-import styles from './MainPage.module.scss';
+import PlaceCard from '../components/PlaceCard'; // 새로운 PlaceCard 컴포넌트 가져오기
+import useFetchAreaData from '../hooks/useFetchAreaData'; // 지역 데이터를 가져오는 커스텀 훅
+import useFetchFestivalData from '../hooks/useFetchFestivalData'; // 축제 데이터를 가져오는 커스텀 훅
+import useFetchHotPlaceData from '../hooks/useFetchHotPlaceData'; // 인구 데이터를 가져오는 커스텀 훅
+import useCalculateHighestPopulation from '../hooks/useCalculateHighestPopulation'; // 나이대별 계산 로직 커스텀 훅
+import { getAgeGroupClassName } from '../utils/classNameMapper'; // 나이대별 클래스 이름을 가져오는 함수
+import styles from './MainPage.module.scss'; // 스타일 가져오기
 
 function MainPage() {
-  const [selectedName, setSelectedName] = useState(null);
+  const [selectedName, setSelectedName] = useState(null); // 사용자가 선택한 지역 이름 저장
 
-  // 각 커스텀 훅에서 데이터 가져오기
+  // 커스텀 훅을 사용하여 각 데이터 가져오기
   const { areaData, loading: areaLoading } = useFetchAreaData();
   const { festivalData } = useFetchFestivalData(selectedName);
   const { hotPlaceData, loading: hotPlaceLoading } =
     useFetchHotPlaceData(areaData);
 
-  // Calculate highest population places by age group
-  const highestPopulationByAgeGroup = useMemo(
-    () => findHighestPopulationByAgeGroup(hotPlaceData),
-    [hotPlaceData]
-  );
-
-  // Sort areaData to show highest population places by age group first
-  const sortedAreaData = useMemo(() => {
-    if (areaLoading || hotPlaceLoading || areaData.length === 0) {
-      return [];
-    }
-
-    // Get the unique places from highestPopulationByAgeGroup
-    const highestPlaces = Object.values(highestPopulationByAgeGroup)
-      .map((item) => item.place_name)
-      .filter((value, index, self) => value && self.indexOf(value) === index); // 중복 제거 및 null 제거
-
-    // Create a list of remaining places excluding those in highestPlaces
-    const remainingPlaces = areaData
-      .filter((area) => !highestPlaces.includes(area.area_nm))
-      .map((area) => area);
-
-    // Concatenate highest places with the rest
-    return [
-      ...highestPlaces.map((name) =>
-        areaData.find((area) => area.area_nm === name)
-      ),
-      ...remainingPlaces,
-    ];
-  }, [areaData, highestPopulationByAgeGroup, areaLoading, hotPlaceLoading]);
+  // 나이대별 계산 커스텀 훅 사용
+  const { highestPopulationByAgeGroup, sortedAreaData } =
+    useCalculateHighestPopulation(
+      hotPlaceData,
+      areaData,
+      areaLoading || hotPlaceLoading
+    );
 
   return (
     <>
-      <Header />
+      <Header /> {/* 헤더 컴포넌트 */}
       <div className={styles.mainContainer}>
         <div className={styles.listContainer}>
           <h1>현재 가장 인기 있는 장소!</h1>
@@ -61,6 +37,7 @@ function MainPage() {
           )}
           {sortedAreaData.length > 0 && (
             <>
+              {/* 나이대별로 가장 인기 있는 장소 표시 */}
               {Object.keys(highestPopulationByAgeGroup).map((ageGroup) => {
                 const placeName =
                   highestPopulationByAgeGroup[ageGroup].place_name;
@@ -70,37 +47,28 @@ function MainPage() {
 
                 if (area) {
                   const hotPlace = hotPlaceData[area.area_nm];
-                  const description = generateDescription(
-                    hotPlace,
-                    hotPlaceLoading
-                  );
+
+                  // 나이대별 클래스 설정
+                  const ageGroupClass = `${styles.ageGroupTitle} ${styles[getAgeGroupClassName(ageGroup)]}`;
 
                   return (
                     <div key={ageGroup} className={styles.ageGroupSection}>
-                      <h2 className={styles.ageGroupTitle}>
-                        {ageGroup}가 가장 많이 방문했어요!
+                      {/* 나이대별 제목을 설정하고 스타일에 맞게 적용 */}
+                      <h2 className={ageGroupClass}>
+                        <span className={styles.ageHighlight}>{ageGroup}</span>
+                        가 가장 많이 방문했어요!
                       </h2>
-                      <div
-                        className={styles.card}
+                      {/* 나이대별 가장 인기 있는 장소 카드 */}
+                      <PlaceCard
+                        hotPlace={hotPlace}
                         onClick={() => setSelectedName(area.area_nm)}
-                      >
-                        <div className={styles.cardImage}>
-                          <img
-                            src={`https://data.seoul.go.kr/SeoulRtd/images/hotspot/${area.area_nm}.jpg`}
-                            alt={area.area_nm}
-                            className={styles.image}
-                          />
-                        </div>
-                        <div className={styles.cardContent}>
-                          <h2>{area.area_nm}</h2>
-                          <p>{description}</p>
-                        </div>
-                      </div>
+                      />
                     </div>
                   );
                 }
                 return null;
               })}
+              {/* 나이대별 인기 장소 외의 다른 장소들 목록 표시 */}
               <h2 className={styles.otherPlacesTitle}>다른 서울 핫플들</h2>
               <div className={styles.cardList}>
                 {sortedAreaData
@@ -112,35 +80,20 @@ function MainPage() {
                   )
                   .map((area, index) => {
                     const hotPlace = hotPlaceData[area.area_nm];
-                    const description = generateDescription(
-                      hotPlace,
-                      hotPlaceLoading
-                    );
 
                     return (
-                      <div
+                      <PlaceCard
                         key={index}
-                        className={styles.card}
+                        hotPlace={hotPlace}
                         onClick={() => setSelectedName(area.area_nm)}
-                      >
-                        <div className={styles.cardImage}>
-                          <img
-                            src={`https://data.seoul.go.kr/SeoulRtd/images/hotspot/${area.area_nm}.jpg`}
-                            alt={area.area_nm}
-                            className={styles.image}
-                          />
-                        </div>
-                        <div className={styles.cardContent}>
-                          <h2>{area.area_nm}</h2>
-                          <p>{description}</p>
-                        </div>
-                      </div>
+                      />
                     );
                   })}
               </div>
             </>
           )}
         </div>
+        {/* 지도 컴포넌트 */}
         <div className={styles.mapContainer}>
           <KakaoMap areaData={areaData} eventData={festivalData} />
         </div>
