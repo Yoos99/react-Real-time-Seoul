@@ -23,7 +23,7 @@ function KakaoMap({ areaData }) {
               position={{ lat: parseFloat(area.x), lng: parseFloat(area.y) }}
               image={{
                 src: 'src/img/placeMappin.svg',
-                size: { width: 40, height: 40 },
+                size: { width: 50, height: 50 },
               }}
               clickable={true}
               onClick={() => setSelectedArea(area)} // 마커 클릭 시 지역 정보 설정

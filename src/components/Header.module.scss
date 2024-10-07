@@ -1,3 +1,5 @@
+@use '../utils/global.scss' as *;
+
 .header {
   position: fixed; /* 상단에 고정 */
   top: 0;
@@ -10,87 +12,92 @@
   padding: 20px;
   background-color: #ffffff;
   border-bottom: 1px solid #e9ecef;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
 }
-
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 80px; // 로고와 검색 섹션 사이의 간격 설정
+}
 .logoSection {
   display: flex;
   align-items: center;
 
   .logo {
-    width: 50px; // 로고 이미지의 너비 조절
-    height: auto;
-    margin-right: 10px;
-  }
+    width: 100%;
+    max-width: 250px; // 로고 이미지의 너비 조절
+    height: 88px;
+    margin-left: 30px;
 
-  .title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #343a40;
-
-    .highlight {
-      color: #1e90ff; // "SEOUL" 부분을 강조할 색상
-    }
+    cursor: pointer;
   }
 }
 
 .searchSection {
-  flex-grow: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin: 0 20px;
+  background-color: #e8f4fd; // 연한 파란색 배경
+  border-radius: $border-radius-thin;
+  padding: 0; // 내부 여백 제거
 
   .searchBox {
-    width: 60%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: #e6f7ff; // 부드러운 대비를 위한 배경색
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 20px;
+    font-family: $font-family-span;
+    width: 700px;
+    flex-grow: 1; // 검색 입력창이 가능한 한 넓게 차지하도록 설정
+    height: 65px;
+    padding: 0 15px; // 텍스트와 경계 간 여백 추가
+    &::placeholder {
+      color: #6c757d;
+    }
   }
 
   .searchButton {
-    background-color: #007bff;
-    color: white;
+    background-color: $primary-color;
     border: none;
-    border-radius: 25px;
-    margin-left: 10px;
+    border-radius: 0 $border-radius-thin $border-radius-thin 0; // 오른쪽만 둥글게
+    color: $white-color;
+    font-size: 31px;
+    padding: 15px; // 버튼 크기와 높이 맞추기
+    height: 65px;
+    width: 70px; // 버튼을 정사각형으로 설정하여 높이와 맞춤
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    padding: 0 15px;
-    font-size: 20px;
-    transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #0056b3;
+      background-color: darken($primary-color, 10%);
     }
   }
 }
 
 .userSection {
-  display: flex;
-  align-items: center;
-
   .myButton {
     display: flex;
     align-items: center;
-    background-color: #ff4757;
-    color: white;
+    height: 50px;
+    background-color: $secondary-color;
     border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
+    border-radius: $border-radius-default;
+    color: $white-color;
+    padding: 15px 15px;
+    font-size: 21px;
+    font-family: $font-family-span;
+    margin-right: 30px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: #ff6b81;
-    }
+    font-weight: $font-weight-bold;
 
     .heartIcon {
-      margin-right: 5px;
-      font-size: 18px;
+      margin-left: 5px;
+    }
+
+    &:hover {
+      background-color: darken($secondary-color, 10%);
     }
   }
 }
