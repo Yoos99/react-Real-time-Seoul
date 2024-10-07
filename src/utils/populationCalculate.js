@@ -1,7 +1,5 @@
-// src/utils/populationAnalysis.js
-
 // Function to find the highest population age group in a given place
-const findHighestAgeGroup = (populationData) => {
+export const findHighestAgeGroup = (populationData) => {
   if (!populationData) return null;
 
   const ageRates = {
@@ -18,26 +16,25 @@ const findHighestAgeGroup = (populationData) => {
   );
 };
 
-// Function to generate a description for a place based on population data
-export const generateDescription = (hotPlaceData, hotPlaceLoading) => {
+export const generateDescriptionDetails = (hotPlaceData, hotPlaceLoading) => {
   if (hotPlaceLoading) {
-    return '데이터를 불러오는 중입니다...';
+    return {
+      highestAgeGroup: '데이터를 불러오는 중입니다...',
+      congestionLevel: '데이터를 불러오는 중입니다...',
+    };
   }
 
   if (!hotPlaceData) {
-    return '해당 지역에 대한 정보가 없습니다.';
+    return {
+      highestAgeGroup: '해당 지역에 대한 정보가 없습니다.',
+      congestionLevel: '해당 지역에 대한 정보가 없습니다.',
+    };
   }
 
   // Find the age group with the highest population ratio
   const highestAgeGroup = findHighestAgeGroup(hotPlaceData);
 
-  // Get congestion level information
-  const congestionLevel =
-    hotPlaceData.FCST_PPLTN && hotPlaceData.FCST_PPLTN[0]
-      ? hotPlaceData.FCST_PPLTN[0].FCST_CONGEST_LVL
-      : '혼잡도 정보 없음';
-
-  return `${highestAgeGroup}에게 인기 많아요! 현재 혼잡도: ${congestionLevel}`;
+  return { highestAgeGroup };
 };
 
 // Function to find the highest population ratio by age group for all places
