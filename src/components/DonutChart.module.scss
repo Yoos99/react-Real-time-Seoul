@@ -1,0 +1,11 @@
+.chartContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; // 차트의 높이 지정
+  width: 300px; // 차트의 너비 지정
+  margin: 20px auto; // 중앙 정렬을 위해 상하 좌우 여백 설정
+  background-color: #f9f9f9; // 차트를 감싸는 배경 색상 설정
+  border-radius: 16px; // 둥근 모서리 적용
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // 그림자 추가
+}
