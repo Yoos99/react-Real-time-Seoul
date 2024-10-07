@@ -1,0 +1,103 @@
+@use '../utils/global.scss' as *;
+
+.header {
+  position: fixed; /* 상단에 고정 */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e9ecef;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 80px; // 로고와 검색 섹션 사이의 간격 설정
+}
+.logoSection {
+  display: flex;
+  align-items: center;
+
+  .logo {
+    width: 100%;
+    max-width: 250px; // 로고 이미지의 너비 조절
+    height: 88px;
+    margin-left: 30px;
+
+    cursor: pointer;
+  }
+}
+
+.searchSection {
+  display: flex;
+  align-items: center;
+  background-color: #e8f4fd; // 연한 파란색 배경
+  border-radius: $border-radius-thin;
+  padding: 0; // 내부 여백 제거
+
+  .searchBox {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 20px;
+    font-family: $font-family-span;
+    width: 700px;
+    flex-grow: 1; // 검색 입력창이 가능한 한 넓게 차지하도록 설정
+    height: 65px;
+    padding: 0 15px; // 텍스트와 경계 간 여백 추가
+    &::placeholder {
+      color: #6c757d;
+    }
+  }
+
+  .searchButton {
+    background-color: $primary-color;
+    border: none;
+    border-radius: 0 $border-radius-thin $border-radius-thin 0; // 오른쪽만 둥글게
+    color: $white-color;
+    font-size: 31px;
+    padding: 15px; // 버튼 크기와 높이 맞추기
+    height: 65px;
+    width: 70px; // 버튼을 정사각형으로 설정하여 높이와 맞춤
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+.userSection {
+  .myButton {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: $secondary-color;
+    border: none;
+    border-radius: $border-radius-default;
+    color: $white-color;
+    padding: 15px 15px;
+    font-size: 21px;
+    font-family: $font-family-span;
+    margin-right: 30px;
+    cursor: pointer;
+    font-weight: $font-weight-bold;
+
+    .heartIcon {
+      margin-left: 5px;
+    }
+
+    &:hover {
+      background-color: darken($secondary-color, 10%);
+    }
+  }
+}

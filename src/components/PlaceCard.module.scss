@@ -1,0 +1,159 @@
+@use '../utils/global.scss' as *;
+
+.card {
+  display: flex;
+  flex-direction: column; // 카드 확장 시 차트가 아래로 나올 수 있도록 설정
+  background-color: $white-color;
+  border-radius: 24px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.6s ease; // 모든 속성에 대해 부드러운 전환 효과 적용
+  padding: 24px;
+  position: relative;
+  margin-bottom: 20px;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .cardImage {
+    width: 100%; // 이미지 너비를 카드 너비에 맞춤
+    height: 380px;
+    overflow: hidden;
+    border-radius: 24px;
+    margin-bottom: 20px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .cardContent {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    h2 {
+      margin: 0;
+      font-size: 29px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    p {
+      margin: 10px 0 0;
+      color: #6c757d;
+      font-size: 18px;
+    }
+    .ppltnInfo {
+      display: flex;
+      gap: 196px;
+      padding: 5px;
+    }
+    .metrics {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 20px;
+
+      .metric {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-family: $font-family-span;
+        color: #6c757d;
+
+        img {
+          margin-right: 8px;
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+
+    .tags {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+      font-size: 20px;
+      font-family: $font-family-span;
+      .tag {
+        display: inline-block;
+        padding: 8px 16px;
+
+        font-weight: bold;
+        border-radius: 16px;
+        color: $white-color;
+
+        &.very-crowded {
+          background-color: #ff5c5c;
+        }
+        &.crowded {
+          background-color: #ff9f43;
+        }
+        &.normal {
+          background-color: #ffc048;
+        }
+        &.relaxed {
+          background-color: #32cd32;
+        }
+      }
+
+      .ageTag {
+        padding: 8px 16px;
+
+        font-weight: bold;
+        border-radius: 16px;
+        color: $white-color;
+
+        &.age-10 {
+          background-color: #ffb6c1;
+        }
+        &.age-20 {
+          background-color: #ffa500;
+        }
+        &.age-30 {
+          background-color: #ffd700;
+        }
+        &.age-40 {
+          background-color: #32cd32;
+        }
+        &.age-50 {
+          background-color: #1e90ff;
+        }
+        &.age-60 {
+          background-color: #dda0dd;
+        }
+      }
+    }
+  }
+
+  .chartContainer {
+    margin-bottom: 20px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    .chartTitle {
+      background-color: #dde1e6;
+      border-radius: 15px;
+      font-size: 35px;
+      font-weight: bold;
+      margin: 10px 20px;
+    }
+    .barChartWrapper {
+      height: 300px; // 차트의 높이 설정
+    }
+  }
+}

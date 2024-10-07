@@ -1,35 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // react-router-dom에서 필요한 모듈 가져오기
+import MainPage from '../src/pages/MainPage';
+import SearchPage from '../src/pages/SearchPage';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainPage />} />{' '}
+          {/* 기본 경로로 MainPage 렌더링 */}
+          <Route path="/searchpage" element={<SearchPage />} />{' '}
+        </Routes>
+      </Router>
+    </Provider>
+  );
+};
 
-export default App
+export default App;
