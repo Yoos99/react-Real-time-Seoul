@@ -1,5 +1,6 @@
 # 실시간 서울 관광 프로젝트
 
+실제 메인 홈페이지 사진
 ![image](https://github.com/user-attachments/assets/31dc12a7-d56f-447e-acfc-307f1c4f5d9a)
 
 ## 기획배경
