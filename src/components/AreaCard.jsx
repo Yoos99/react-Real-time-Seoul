@@ -1,4 +1,4 @@
-import styles from '../css/AreaCard.module.scss';
+import styles from './AreaCard.module.scss';
 
 const AreaCard = ({ area, onClose }) => {
   return (

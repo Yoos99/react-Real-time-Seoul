@@ -1,0 +1,48 @@
+@use '../utils/global.scss' as *;
+
+.searchPage {
+  display: flex;
+  width: 100%;
+  height: 95vh;
+  overflow: hidden;
+  margin-top: 130px;
+  font-family: $font-family-p;
+}
+
+.listContainer {
+  flex: 1;
+  padding: 80px;
+  margin-top: -30px;
+  background-color: #ffffff;
+  overflow-y: auto;
+
+  .searchTitle {
+    font-size: 32px;
+    font-weight: bold;
+
+    margin-bottom: 40px;
+
+    .searchQuery {
+      color: $primary-color; // 검색어 색상을 강조하기 위해 secondary-color 사용
+    }
+  }
+
+  .cardList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.mapContainer {
+  flex: 2;
+  padding: 20px;
+  height: 100%;
+
+  .kakaoMap {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+}
