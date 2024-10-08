@@ -34,7 +34,7 @@ export const fetchFestivalData = async (name) => {
 export const fetchHotPlace = async (name) => {
   if (!name) return;
 
-  const ppltnURL = `http://openapi.seoul.go.kr:8088/${apiKey}/json/citydata_ppltn/1/5/${name}`;
+  const ppltnURL = `/api/${apiKey}/json/citydata_ppltn/1/5/${name}`;
   try {
     const response = await ky.get(ppltnURL).json();
     return response['SeoulRtd.citydata_ppltn'][0]; // 인구 밀도 정보 반환
