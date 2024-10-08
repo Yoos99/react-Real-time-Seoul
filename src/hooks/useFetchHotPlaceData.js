@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchHotPlace } from '../api/api';
+import { fetchHotPlace } from '../../api/api';
 
 const useFetchHotPlaceData = (areaData) => {
   const [hotPlaceData, setHotPlaceData] = useState({});

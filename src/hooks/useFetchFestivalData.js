@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchFestivalData } from '../api/api';
+import { fetchFestivalData } from '../../api/api';
 
 const useFetchFestivalData = (selectedName) => {
   const [festivalData, setFestivalData] = useState(null);
