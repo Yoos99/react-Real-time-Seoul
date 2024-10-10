@@ -71,7 +71,7 @@
     cursor: pointer;
 
     &:hover {
-      background-color: darken($primary-color, 10%);
+      background-color: $primary-color;
     }
   }
 }
@@ -97,7 +97,7 @@
     }
 
     &:hover {
-      background-color: darken($secondary-color, 10%);
+      background-color: $secondary-color;
     }
   }
 }
