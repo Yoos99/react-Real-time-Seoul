@@ -32,6 +32,7 @@
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
     "sass-embedded": "^1.79.4",
+    "vercel": "^37.6.2",
     "vite": "^5.4.1"
   }
 }

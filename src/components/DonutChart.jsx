@@ -43,25 +43,25 @@ function DonutChart({ data }) {
         display: true,
         position: 'right',
         labels: {
-          padding: 30, // 범례의 각 항목과 간격 설정
-          font: {
-            size: 20, // 범례의 폰트 크기 설정
-          },
+          padding: 20, // 범례의 각 항목과 간격 설정
         },
       },
       tooltip: {
         enabled: true,
+        bodyFont: {
+          size: 19, // 툴팁 텍스트 크기 설정
+        },
       },
     },
     layout: {
       padding: {
-        right: 10, // 도넛 차트와 범례 사이의 간격 조절
+        right: 20, // 도넛 차트와 범례 사이의 간격 조절
       },
     },
   };
 
   return (
-    <div style={{ height: '460px', width: '460px', margin: '0 auto' }}>
+    <div style={{ height: '480px', width: '480px', margin: '0 auto' }}>
       <Doughnut data={chartData} options={chartOptions} />
     </div>
   );

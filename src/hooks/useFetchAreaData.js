@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchAreaData } from '../api/api';
+import { fetchAreaData } from '../../api/api';
 
 const useFetchAreaData = () => {
   const [areaData, setAreaData] = useState([]);
