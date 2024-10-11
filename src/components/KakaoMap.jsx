@@ -22,7 +22,7 @@ function KakaoMap({ areaData }) {
               key={index}
               position={{ lat: parseFloat(area.x), lng: parseFloat(area.y) }}
               image={{
-                src: 'src/img/placeMappin.svg',
+                src: '/img/placeMappin.svg',
                 size: { width: 50, height: 50 },
               }}
               clickable={true}
