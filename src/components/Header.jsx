@@ -31,7 +31,7 @@ function Header() {
         {/* 로고 섹션 */}
         <div className={styles.logoSection} onClick={() => navigate('/')}>
           <img
-            src="src/img/seoulLogo.svg"
+            src="/img/seoulLogo.svg"
             alt="Lovely Seoul Logo"
             className={styles.logo}
           />

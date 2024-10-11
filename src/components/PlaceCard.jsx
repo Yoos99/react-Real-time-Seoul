@@ -71,11 +71,11 @@ function PlaceCard({ hotPlace }) {
         <div className={styles.ppltnInfo}>
           <div className={styles.metrics}>
             <div className={styles.metric}>
-              <img src="/src/img/man.svg" alt="Male" />
+              <img src="/img/man.svg" alt="Male" />
               {hotPlace.MALE_PPLTN_RATE}%
             </div>
             <div className={styles.metric}>
-              <img src="/src/img/woman.svg" alt="Female" />
+              <img src="/img/woman.svg" alt="Female" />
               {hotPlace.FEMALE_PPLTN_RATE}%
             </div>
           </div>
