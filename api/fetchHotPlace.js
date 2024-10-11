@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     const data = await response.json();
     console.log(data);
 
-    res.status(200).json(data['SeoulRtd.citydata_ppltn']);
+    res.status(200).json(data['SeoulRtd.citydata_ppltn'][0]);
   } catch (error) {
     console.error('오류 발생:', error);
     res.status(500).json({ error: 'Failed to fetch population data' });
