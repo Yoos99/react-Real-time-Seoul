@@ -1,7 +1,8 @@
 # 실시간 서울 관광 프로젝트
 
-실제 메인 홈페이지 사진
-![image](https://github.com/user-attachments/assets/31dc12a7-d56f-447e-acfc-307f1c4f5d9a)
+실제 메인 홈페이지 - https://reactrealseoul.vercel.app/
+
+![image](https://github.com/user-attachments/assets/53e13d6a-d261-4aa1-91a5-f37aad2d1a8a)
 
 ## 기획배경
 
