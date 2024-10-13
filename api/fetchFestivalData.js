@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   const { name } = req.query;
-  const apiKey = import.meta.env.VITE_LIVESEOUL_KEY;
-  const fesURL = `http://openapi.seoul.go.kr:8088/${apiKey}/json/citydata/1/5/${name}`;
+  // const apiKey = import.meta.env.VITE_LIVESEOUL_KEY;
+  const fesURL = `http://openapi.seoul.go.kr:8088/${process.env.VITE_LIVESEOUL_KEY}/json/citydata/1/5/${name}`;
   try {
     const response = await fetch(fesURL);
     if (!response.ok) {

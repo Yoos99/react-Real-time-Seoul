@@ -1,7 +1,8 @@
 # 실시간 서울 관광 프로젝트
 
-실제 메인 홈페이지 사진
-![image](https://github.com/user-attachments/assets/31dc12a7-d56f-447e-acfc-307f1c4f5d9a)
+실제 메인 홈페이지 - https://reactrealseoul.vercel.app/
+
+![image](https://github.com/user-attachments/assets/53e13d6a-d261-4aa1-91a5-f37aad2d1a8a)
 
 ## 기획배경
 
@@ -57,20 +58,10 @@
   - 내가 북마크한 장소 모아보기 제공
 - **방문 장소 기준 근처 행사 정보 제공**
 
-- 향후 추가 구현 사항
-  ### **AI API를 활용해 여행 코스를 추천하는 기능**
-  - **커스텀 프롬프트 설정**
-    - AI가 서울의 특정 위치나 이벤트 데이터를 기반으로 추천을 제공하도록 커스텀 프롬프트를 설정
-    - 예를 들어, "홍대"라는 위치와 해당 지역의 주요 명소 데이터를 AI에게 전달하여, 그 데이터를 바탕으로 추천 코스를 제공
-  - **프론트엔드에서 AI API 통합**
-    - OpenAI의 GPT-3/4 또는 다른 자연어 처리(NLP) 기반 API를 사용하여 사용자의 자연어 질문을 처리
-    - 사용자가 "홍대에서 할 것"과 같은 질문을 입력하면, 프론트엔드에서 이 입력을 AI API로 전송하고, AI가 해당 질문에 맞는 답변을 반환합니다.
-  ### **달력 라이브러리 기반 서울 지역문화 행사 날짜별 제공**
-  - 달력 라이브러리를 활용해 다가오는 서울시 지역문화 행사를 손쉽게 확인
-  - 날짜를 선택하면 해당 날짜에 열리는 행사 정보를 보여주며, 행사 상세 페이지에서 시간, 위치, 대표 이미지등의 세부 정보를 제공
-  - 행사 정보는 미리 정의된 데이터를 기준으로 보여주되, 사용자에게 관심 있는 날짜별 행사를 쉽게 찾아볼 수 있도록 구성
-
 ## 유사 서비스 UI
+
+- https://data.seoul.go.kr/SeoulRtd/
+  ![image](https://github.com/user-attachments/assets/333e5486-1bf6-4562-93bb-98b45f3f91a3)
 
 1. **메인화면 지도 + 장소 마킹**
 
@@ -88,4 +79,78 @@
 
    인구 데이터 통계는 도넛 그래프와 막대 그래프를 활용
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/d07dc5d7-42da-4baa-a23f-a640420581c3/image.png)
+## 플로우차트
+
+![image](https://github.com/user-attachments/assets/7b92be0a-259a-4483-93e0-60c4d1775e62)
+
+## 코딩 컨벤션
+
+### 폴더 구조
+
+```tsx
+src/
+  ├── components/
+  │   ├── common/
+	│   │    ├── common.jsx
+	│   │    └── styles.module.scss
+  │   ├── layout/
+  │   └── features/
+  ├── pages/
+  ├── hooks/
+  ├── utils/
+  └── assets/
+```
+
+### 파일 명명 규칙
+
+- 컴포넌트: PascalCase (예: `Button.jsx`, `UserProfile.jsx`)
+- 유틸리티, 훅: camelCase (예: `useForm.js`, `formatDate.js`)
+- 스타일: 컴포넌트 이름과 동일하게 (예: `Button.module.css`)
+
+### 클래스 명명 규칙
+
+- BEM(Block Element Modifier) 방식 사용
+- 예: `button`, `button__icon`, `button--large`
+
+### 코드 스타일 가이드
+
+- ESLint와 Prettier 사용
+- 함수형 컴포넌트와 Hooks 사용 권장
+- 주석은 1기능에 1~2줄
+
+### 상태 관리 전략
+
+- 로컬 상태: useState
+- 전역 상태: Zustand
+- 서버 상태: React Query
+  - 사용자 정의 훅 : useFetch
+  ```tsx
+  import { useQuery } from '@tanstack/react-query';
+  import ky from 'ky';
+
+  const useFetch = (url) => {
+    return useQuery({
+      queryKey: [url],
+      queryFn: async () => {
+        const response = await ky.get(url).json();
+        return response;
+      },
+    });
+  };
+
+  export default useFetch;
+  ```
+- **반복되는 훅 사용은 사용자 정의 훅으로 정의해서 사용**
+
+### 라이브러리
+
+- **react**
+- **react-router-dom** (라우팅)
+- **ky** (http 통신)
+- **zustand** (전역 상태 관리)
+- **sass** (스타일)
+- **dotenv** (환경 변수)
+- **react-spinners** (스피너)
+- **@tanstack/react-query** (서버 상태 관리)
+- **styled-components** (스타일, CSS-in-JS)
+- [Nivo.rocks](http://Nivo.rocks) (그래프)
