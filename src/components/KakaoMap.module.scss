@@ -12,3 +12,16 @@
   height: 100%;
   border-radius: $border-radius-default;
 }
+
+.overlayPopup {
+  position: absolute;
+  transform: translateY(-100%); // 팝업을 마커 위로 이동
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; // 마커 클릭을 허용하기 위해
+}
+
+.overlayPopup > * {
+  pointer-events: auto; // 팝업 내부 요소는 클릭 가능하게 설정
+}
