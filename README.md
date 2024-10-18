@@ -79,6 +79,10 @@
 
    인구 데이터 통계는 도넛 그래프와 막대 그래프를 활용
 
+## 사이트맵(IA)
+
+![ia](https://github.com/user-attachments/assets/28bae36f-ea8c-46db-8dd4-e6a053492633)
+
 ## 플로우차트
 
 ![image](https://github.com/user-attachments/assets/7b92be0a-259a-4483-93e0-60c4d1775e62)
@@ -123,7 +127,9 @@ src/
 - 로컬 상태: useState
 - 전역 상태: Zustand
 - 서버 상태: React Query
+
   - 사용자 정의 훅 : useFetch
+
   ```tsx
   import { useQuery } from '@tanstack/react-query';
   import ky from 'ky';
@@ -140,6 +146,7 @@ src/
 
   export default useFetch;
   ```
+
 - **반복되는 훅 사용은 사용자 정의 훅으로 정의해서 사용**
 
 ### 라이브러리
